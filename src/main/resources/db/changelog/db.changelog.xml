@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="1" author="natalia">
+        <createTable tableName="project">
+            <column name="project_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+
+            <column name="project_name" type="varchar"/>
+
+            <column name="created_on" type="datetime"/>
+            
+            <column name="updated_on" type="datetime"/>
+        </createTable>
+
+
+        <createTable tableName="task">
+            <column name="task_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+
+            <column name="task_name" type="varchar"/>
+
+
+            <column name="days_to_complete" type="int"/>
+
+            <column name="task_status" type="int"/>
+
+            <column name="created_on" type="datetime"/>
+
+            <column name="updated_on" type="datetime"/>
+
+            <column name="project_id" type="bigint">
+                <constraints referencedTableName="project"
+                             referencedColumnNames="project_id"
+                             foreignKeyName="TASK_PROJECT_ID_PROJECT_PROJECT_ID"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
